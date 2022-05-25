@@ -155,18 +155,20 @@ const Stage: React.FC<PropsStage> = ({
               ? strings('fiat_on_ramp_aggregator.transaction.processing')
               : strings('transaction.submitted')}
           </Text>
-          {!paymentType?.includes('Credit') ? (
+          {paymentType?.includes('Credit') ? (
+            <Text small centered style={styles.stageMessage}>
+              {strings(
+                'fiat_on_ramp_aggregator.transaction.processing_card_description',
+              )}
+            </Text>
+          ) : paymentType?.includes('Bank') ? (
             <Text small centered style={styles.stageMessage}>
               {strings(
                 'fiat_on_ramp_aggregator.transaction.processing_bank_description',
               )}
             </Text>
           ) : (
-            <Text small centered style={styles.stageMessage}>
-              {strings(
-                'fiat_on_ramp_aggregator.transaction.processing_card_description',
-              )}
-            </Text>
+            <Text />
           )}
         </>
       );
